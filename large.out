@@ -1,0 +1,83 @@
+
+[00:00:00.000 --> 00:00:05.720]   There is no problem in kicking off the sprint, but at the end of the sprint, how are we going to deal with the code that we wrote?
+[00:00:05.720 --> 00:00:08.760]   Right. So I want to make sure that we are aligned on that.
+[00:00:08.760 --> 00:00:13.560]   We have a strategy for that, how we move forward with that code and then we can kick off the sprint.
+[00:00:13.560 --> 00:00:18.180]   That's what that's what I want to have this brains think about this one.
+[00:00:18.180 --> 00:00:24.660]   What environment they are going to put it, how are they going to use the branching, what branches they are going to merge it into?
+[00:00:24.660 --> 00:00:30.000]   Because we know the strategy for our U.S.
+[00:00:30.000 --> 00:00:40.800]   But if we are saying that this is like any other feature development, the way we treat any other feature for development, we need to just use the same strategy.
+[00:00:40.800 --> 00:00:43.800]   Yeah, that's what I'm thinking. Why is it that? Why should we?
+[00:00:43.800 --> 00:00:52.100]   Why should we be thinking something very distinct for this particular change as opposed to a business feature change?
+[00:00:52.100 --> 00:00:54.400]   Right. It's another technical feature.
+[00:00:54.400 --> 00:00:57.160]   I think it's a very different approach to the way we do it.
+[00:00:57.160 --> 00:00:59.160]   I think it's a very different approach to the way we do it.
+[00:00:59.160 --> 00:01:01.160]   I think it's a very different approach to the way we do it.
+[00:01:01.160 --> 00:01:03.160]   I think it's a very different approach to the way we do it.
+[00:01:03.160 --> 00:01:05.160]   I think it's a very different approach to the way we do it.
+[00:01:05.160 --> 00:01:07.160]   I think it's a very different approach to the way we do it.
+[00:01:07.160 --> 00:01:09.160]   I think it's a very different approach to the way we do it.
+[00:01:09.160 --> 00:01:11.160]   I think it's a very different approach to the way we do it.
+[00:01:11.160 --> 00:01:13.160]   I think it's a very different approach to the way we do it.
+[00:01:13.160 --> 00:01:15.160]   I think it's a very different approach to the way we do it.
+[00:01:15.160 --> 00:01:17.160]   I think it's a very different approach to the way we do it.
+[00:01:17.160 --> 00:01:19.160]   I think it's a very different approach to the way we do it.
+[00:01:19.160 --> 00:01:20.160]   I think it's a very different approach to the way we do it.
+[00:01:20.160 --> 00:01:22.160]   I think it's a very different approach to the way we do it.
+[00:01:22.160 --> 00:01:24.160]   I think it's a very different approach to the way we do it.
+[00:01:24.160 --> 00:01:26.160]   I think it's a very different approach to the way we do it.
+[00:01:26.160 --> 00:01:28.160]   I think it's a very different approach to the way we do it.
+[00:01:28.160 --> 00:01:30.160]   I think it's a very different approach to the way we do it.
+[00:01:30.160 --> 00:01:32.160]   I think it's a very different approach to the way we do it.
+[00:01:32.160 --> 00:01:34.160]   I think it's a very different approach to the way we do it.
+[00:01:34.160 --> 00:01:36.160]   I think it's a very different approach to the way we do it.
+[00:01:36.160 --> 00:01:38.160]   I think it's a very different approach to the way we do it.
+[00:01:38.160 --> 00:01:40.160]   I think it's a very different approach to the way we do it.
+[00:01:40.160 --> 00:01:42.160]   I think it's a very different approach to the way we do it.
+[00:01:42.160 --> 00:01:44.160]   I think it's a very different approach to the way we do it.
+[00:01:44.160 --> 00:01:46.160]   I think it's a very different approach to the way we do it.
+[00:01:46.160 --> 00:01:48.160]   I think it's a very different approach to the way we do it.
+[00:01:48.160 --> 00:01:50.160]   I think it's a very different approach to the way we do it.
+[00:01:50.160 --> 00:01:52.160]   I think it's a very different approach to the way we do it.
+[00:01:52.160 --> 00:01:54.160]   I think it's a very different approach to the way we do it.
+[00:01:54.160 --> 00:01:56.160]   I think it's a very different approach to the way we do it.
+[00:01:56.160 --> 00:01:58.160]   I think it's a very different approach to the way we do it.
+[00:01:58.160 --> 00:02:00.160]   I think it's a very different approach to the way we do it.
+[00:02:00.160 --> 00:02:02.160]   I think it's a very different approach to the way we do it.
+[00:02:02.160 --> 00:02:04.160]   I think it's a very different approach to the way we do it.
+[00:02:04.160 --> 00:02:06.160]   I think it's a very different approach to the way we do it.
+[00:02:06.160 --> 00:02:08.160]   I think it's a very different approach to the way we do it.
+[00:02:08.160 --> 00:02:10.160]   I think it's a very different approach to the way we do it.
+[00:02:10.160 --> 00:02:12.160]   I think it's a very different approach to the way we do it.
+[00:02:12.160 --> 00:02:14.160]   I think it's a very different approach to the way we do it.
+[00:02:14.160 --> 00:02:16.160]   I think it's a very different approach to the way we do it.
+[00:02:16.160 --> 00:02:18.160]   I think it's a very different approach to the way we do it.
+[00:02:18.160 --> 00:02:20.160]   I think it's a very different approach to the way we do it.
+[00:02:20.160 --> 00:02:22.160]   I think it's a very different approach to the way we do it.
+[00:02:22.160 --> 00:02:24.160]   I think it's a very different approach to the way we do it.
+[00:02:24.160 --> 00:02:26.160]   I think it's a very different approach to the way we do it.
+[00:02:26.160 --> 00:02:28.160]   I think it's a very different approach to the way we do it.
+[00:02:28.160 --> 00:02:30.160]   I think it's a very different approach to the way we do it.
+[00:02:30.160 --> 00:02:32.160]   I think it's a very different approach to the way we do it.
+[00:02:32.160 --> 00:02:34.160]   I think it's a very different approach to the way we do it.
+[00:02:34.160 --> 00:02:36.160]   I think it's a very different approach to the way we do it.
+[00:02:36.160 --> 00:02:38.160]   I think it's a very different approach to the way we do it.
+[00:02:38.160 --> 00:02:40.160]   I think it's a very different approach to the way we do it.
+[00:02:40.160 --> 00:02:42.160]   I think it's a very different approach to the way we do it.
+[00:02:42.160 --> 00:02:44.160]   I think it's a very different approach to the way we do it.
+[00:02:44.160 --> 00:02:46.160]   I think it's a very different approach to the way we do it.
+[00:02:46.160 --> 00:02:48.160]   I think it's a very different approach to the way we do it.
+[00:02:48.160 --> 00:02:50.160]   I think it's a very different approach to the way we do it.
+[00:02:50.160 --> 00:02:52.160]   I think it's a very different approach to the way we do it.
+[00:02:52.160 --> 00:02:54.160]   I think it's a very different approach to the way we do it.
+[00:02:54.160 --> 00:02:56.160]   I think it's a very different approach to the way we do it.
+[00:02:56.160 --> 00:02:58.160]   I think it's a very different approach to the way we do it.
+[00:02:58.160 --> 00:03:00.160]   I think it's a very different approach to the way we do it.
+[00:03:00.160 --> 00:03:02.160]   I think it's a very different approach to the way we do it.
+[00:03:02.160 --> 00:03:04.160]   I think it's a very different approach to the way we do it.
+[00:03:04.160 --> 00:03:06.160]   I think it's a very different approach to the way we do it.
+[00:03:06.160 --> 00:03:08.160]   I think it's a very different approach to the way we do it.
+[00:03:08.160 --> 00:03:10.160]   I think it's a very different approach to the way we do it.
+[00:03:10.160 --> 00:03:12.160]   I think it's a very different approach to the way we do it.
+[00:03:12.160 --> 00:03:14.160]   I think it's a very different approach to the way we do it.
+[00:03:14.160 --> 00:03:16.160]   I think it's a very different approach to the way we do it.
+[00:03:16.160 --> 00:03:18.160]   I think it's a very different approach to the way we do it.
