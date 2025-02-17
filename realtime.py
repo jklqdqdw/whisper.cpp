@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
+import queue
 import re
 import subprocess
 import sys
 import signal
+import threading
 
 translation_model = None
 translation_tokenizer = None
@@ -36,32 +38,27 @@ def translate_text(text, target_lang):
     return translated_texts[0] if translated_texts else ""
 
 
-def main(cpatureID):
-    load_translation_model()  # 预加载翻译模型，避免后续重复加载
-    # 构造 whisper-stream 的命令行参数
-    # 根据需要可以调整参数，比如模型路径、线程数、step 和 length
+def transcribe_audio(role, device_id, output_queue):
+    print("Start transcribe audio:"+role)
+    """
+    启动实时语音转录并将结果放入线程安全的队列中。
+
+    参数:
+      role: 角色名称 ("interviewer" 或 "candidate")。
+      device_id: 音频输入设备ID。
+      output_queue: 用于存储输出的线程安全队列。
+    """
+    # load_translation_model()  # 预加载翻译模型，避免后续重复加载
     cmd = [
         './build/bin/whisper-stream',
         '-m', 'models/ggml-large-v3-turbo.bin',
         '-fa',
         '-kc',
-        '--capture', str(cpatureID),  # 添加音频设备选择参数
-
+        '--capture', str(device_id),
     ]
 
-    print("启动实时语音识别，请开始说话，按 Ctrl+C 退出...")
     try:
-        # 启动子进程，并实时读取标准输出
         process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
-
-        # 注册 SIGINT (Ctrl+C) 的处理函数
-        def signal_handler(sig, frame):
-            print("正在终止...")
-            process.terminate()
-            sys.exit(0)
-        signal.signal(signal.SIGINT, signal_handler)
-
-        # 实时输出子进程的输出
         last_line = ""
         while True:
             out_line = process.stdout.readline()
@@ -69,23 +66,45 @@ def main(cpatureID):
                 break
             ansi_escape = re.compile(r'\x1b\[[0-9;]*[A-Za-z]')
             out_line = ansi_escape.sub('', out_line)
-            # 再来 strip()
-            out_line = out_line.strip()
-            if out_line:
-                if last_line == out_line:  # 直接比较去除空白后的字符串
-                    continue
-                else:
-                    last_line = out_line  # 更新 last_line
+            out_line = out_line.replace("*Loud music*","").strip()
+            if out_line and last_line != out_line:
+                last_line = out_line
                 if 'kernel_flash_attn_ext_vec_bf16_h256' in out_line or 'init:' in out_line or 'whisper_' in out_line or 'main:' in out_line or '[2K' in out_line or out_line == '.' or out_line == 'Thank you.' or out_line == 'Okay.' or out_line == '[Start speaking]':
                     continue
-                print("line:" + out_line)  # 翻译输出文本
-                translated_text = translate_text(out_line, "zh_CN")
-                print("翻译: ", translated_text)
+                output_queue.put({role: out_line})
+                print({role: out_line})
     except Exception as ex:
-        print("发生错误：", ex)
+        print(f"{role} 线程发生错误：", ex)
     finally:
         if process.poll() is None:
             process.terminate()
+
+def main():
+    output_queue = queue.Queue()  # 创建线程安全的队列
+
+    # 列出音频设备并选择
+    list_audio_devices()
+    interviewer_device_id = int(input("请选择interviewer音频输入设备ID: "))
+    candidate_device_id = int(input("请选择candidate音频输入设备ID: "))
+
+    # 创建并启动子线程
+    interviewer_thread = threading.Thread(target=transcribe_audio, args=("interviewer", interviewer_device_id, output_queue))
+    candidate_thread = threading.Thread(target=transcribe_audio, args=("candidate", candidate_device_id, output_queue))
+
+    interviewer_thread.start()
+    candidate_thread.start()
+
+    # 主线程处理队列中的数据
+    try:
+        while True:
+            if not output_queue.empty():
+                output = output_queue.get()
+                #print(output)
+    except KeyboardInterrupt:
+        print("正在终止...")
+    finally:
+        interviewer_thread.join()
+        candidate_thread.join()
 
 def list_audio_devices():
     import sounddevice as sd
@@ -107,7 +126,4 @@ if __name__ == '__main__':
     import argparse
     
     parser = argparse.ArgumentParser(description='实时语音识别和翻译程序')
-    list_audio_devices()
-    # 让用户选择音频输入设备
-    device_id = int(input("请选择音频输入设备ID: "))
-    main(device_id)
+    main()
