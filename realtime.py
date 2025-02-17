@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import re
 import subprocess
 import sys
 import signal
@@ -61,21 +62,23 @@ def main(cpatureID):
         signal.signal(signal.SIGINT, signal_handler)
 
         # 实时输出子进程的输出
-        last_line=""
+        last_line = ""
         while True:
             out_line = process.stdout.readline()
             if out_line == '' and process.poll() is not None:
                 break
-            if out_line.strip():
-                out_line = out_line.strip()
-                if last_line==out_line:
+            ansi_escape = re.compile(r'\x1b\[[0-9;]*[A-Za-z]')
+            out_line = ansi_escape.sub('', out_line)
+            # 再来 strip()
+            out_line = out_line.strip()
+            if out_line:
+                if last_line == out_line:  # 直接比较去除空白后的字符串
                     continue
                 else:
-                    last_line=out_line
-                if 'kernel_flash_attn_ext_vec_bf16_h256' in out_line or 'init:' in out_line or 'whisper_' in out_line or 'main:' in out_line or '[2K' in out_line or out_line=='.' or out_line=='Thank you.' or out_line=='Okay.' or out_line=='[Start speaking]':
+                    last_line = out_line  # 更新 last_line
+                if 'kernel_flash_attn_ext_vec_bf16_h256' in out_line or 'init:' in out_line or 'whisper_' in out_line or 'main:' in out_line or '[2K' in out_line or out_line == '.' or out_line == 'Thank you.' or out_line == 'Okay.' or out_line == '[Start speaking]':
                     continue
-                print(out_line)
-                # 翻译输出文本
+                print("line:" + out_line)  # 翻译输出文本
                 translated_text = translate_text(out_line, "zh_CN")
                 print("翻译: ", translated_text)
     except Exception as ex:
@@ -91,26 +94,20 @@ def list_audio_devices():
     """
     devices = sd.query_devices()
     print("\n=== 音频输入设备 ===")
-    for i, device in enumerate(devices):
+    index=0
+    for device in devices:
         if device['max_input_channels'] > 0:
-            print(f"[{i}] {device['name']}")
+            print(f"[{index}] {device['name']}")
             print(f"    通道数: {device['max_input_channels']}")
             print(f"    采样率: {device['default_samplerate']}Hz")
-    
-    print("\n=== 音频输出设备 ===")
-    for i, device in enumerate(devices):
-        if device['max_output_channels'] > 0:
-            print(f"[{i}] {device['name']}")
-            print(f"    通道数: {device['max_output_channels']}")
-            print(f"    采样率: {device['default_samplerate']}Hz")
+            index+=1
+
 
 if __name__ == '__main__':
     import argparse
     
     parser = argparse.ArgumentParser(description='实时语音识别和翻译程序')
-    parser.add_argument('--device', type=int, default=0,
-                       help='音频输入设备ID（默认：0）')
-    args = parser.parse_args()
-    
     list_audio_devices()
-    main(args.device)
+    # 让用户选择音频输入设备
+    device_id = int(input("请选择音频输入设备ID: "))
+    main(device_id)
