@@ -54,9 +54,8 @@ def transcribe_audio(role, device_id, output_queue):
         '-m', 'models/ggml-large-v3-turbo.bin',
         '-fa',
         '-kc',
-        '--capture', str(device_id),
+        '--capture', str(device_id),  # 添加音频设备选择参数
     ]
-
     try:
         process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
         last_line = ""
